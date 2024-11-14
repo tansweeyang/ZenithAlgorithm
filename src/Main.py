@@ -24,29 +24,23 @@ def generate_schedule():
     task_break_durations = [optimizer.calculate_break_time(duration) for duration in task_durations]
     total_productivity = optimizer.objective_function(task_durations)
 
-    current_time = datetime.now()
-
     # Prepare the response in the required format
     updated_tasks = []
     for task, duration, break_duration in zip(tasks, task_durations, task_break_durations):
         task_duration = duration - break_duration
-        end_time = current_time + timedelta(minutes=task_duration)
         updated_tasks.append({
             "taskId": task["taskId"],
             "taskName": task["taskName"],
             "effort": task["effort"],
             "enjoyability": task["enjoyability"],
-            "type": task["type"],
-            "color": task["color"],
-            "duration": task_duration,
-            "archived": task["archived"]
+            "duration": float(np.round(task_duration, 2)),  # Adding task duration to the response
+            "breakDuration": float(np.round(break_duration, 2)),  # Optionally include break duration
         })
-        current_time = end_time + timedelta(minutes=break_duration)
 
     response = {
-        # "total_available_time": float(np.round(optimizer.total_available_time, 2)),
-        # "used_time": float(np.round(sum(task_durations), 2)),
-        # "total_productivity_score": float(np.round(-total_productivity, 2)),
+        "total_available_time": float(np.round(optimizer.total_available_time, 2)),
+        "used_time": float(np.round(sum(task_durations), 2)),
+        "total_productivity_score": float(np.round(-total_productivity, 2)),
         "tasks": updated_tasks
     }
 

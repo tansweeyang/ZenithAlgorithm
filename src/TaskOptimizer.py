@@ -51,34 +51,3 @@ class TaskOptimizer:
             return result.x
         else:
             raise ValueError("Optimization failed.")
-
-
-def main():
-    task_names = []
-    task_efforts = []
-    task_enjoyabilities = []
-
-    while True:
-        name = input("Enter the name of the task (or 'stop' to finish): ")
-        if name.lower() == 'stop':
-            break
-        effort = float(input(f"Enter the effort for task '{name}' (1-10): "))
-        enjoyability = float(input(f"Enter the enjoyability for task '{name}' (1-10): "))
-
-        task_names.append(name)
-        task_efforts.append(effort)
-        task_enjoyabilities.append(enjoyability)
-
-    total_available_time = float(input("Enter the total available time (hours): "))
-    max_duration = float(input("Enter the maximum duration for any task (hours): "))
-
-    optimizer = TaskOptimizer(task_names, task_efforts, task_enjoyabilities, total_available_time, max_duration)
-    optimal_schedule = optimizer.optimize_schedule()
-
-    print("\nOptimal Task Schedule:")
-    for i, duration in enumerate(optimal_schedule):
-        print(f"{task_names[i]}: {duration:.2f} hours")
-
-
-if __name__ == "__main__":
-    main()
