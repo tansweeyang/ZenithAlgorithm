@@ -48,6 +48,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/zenith-algorithm:latest
 
+  # Deploy to AWS ECS from Docker Hub
   deploy:
     name: Deploy to AWS ECS
     runs-on: ubuntu-latest
