@@ -22,14 +22,15 @@ class TaskOptimizer:
         self.c3 = c3
 
     @staticmethod
-    def compute_integral_productivity(t, effort, enjoyability, c1, c2, c3):
-        # Define the productivity function as a function of time
-        productivity_function = lambda t: (enjoyability ** 2 / effort ** 2) + \
-                                          (enjoyability ** 2 + enjoyability ** 2 * np.log(effort)) * t * np.exp(
+    def _productivity_function(t, effort, enjoyability, c1, c2, c3):
+        return (enjoyability ** 2 / effort ** 2) + \
+               (enjoyability ** 2 + enjoyability ** 2 * np.log(effort)) * t * np.exp(
             -t / (c1 * effort + c2 * enjoyability + c3))
 
-        # Integrate productivity over the duration t
-        result, _ = quad(productivity_function, 0, t)
+    @staticmethod
+    def compute_integral_productivity(t, effort, enjoyability, c1, c2, c3):
+        # Use the defined function instead of a lambda
+        result, _ = quad(lambda x: TaskOptimizer._productivity_function(x, effort, enjoyability, c1, c2, c3), 0, t)
         return result
 
     @staticmethod
