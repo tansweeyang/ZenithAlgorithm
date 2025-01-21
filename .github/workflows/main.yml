@@ -70,7 +70,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ecs-task-definition.json
-          container-name: zenith-algorithm
+          container-name: zenith-algorithm-docker-image
           image: ${{ secrets.DOCKER_HUB_USERNAME }}/zenith-algorithm:latest
 
       - name: Deploy New Task Definition to ECS Service
