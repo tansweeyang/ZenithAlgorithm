@@ -6,6 +6,7 @@ on:
       - main
 
 jobs:
+  # Build and push to DockerHub
   build-and-push:
     name: Build and deploy zenith-algorithm
     runs-on: ubuntu-latest
