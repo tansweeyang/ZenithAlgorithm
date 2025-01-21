@@ -1,0 +1,86 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:026090545212:task-definition/zenith-algorithm-ecs:1",
+  "containerDefinitions": [
+    {
+      "name": "zenith-algorithm-docker-image",
+      "image": "docker.io/eislyn2001/zenith-algorithm:latest",
+      "cpu": 0,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "name": "zenith-algorithm-docker-image-5000-tcp",
+          "containerPort": 5000,
+          "hostPort": 5000,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/zenith-algorithm-ecs",
+          "mode": "non-blocking",
+          "awslogs-create-group": "true",
+          "max-buffer-size": "25m",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      },
+      "systemControls": []
+    }
+  ],
+  "family": "zenith-algorithm-ecs",
+  "executionRoleArn": "arn:aws:iam::026090545212:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 1,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "512",
+  "memory": "1024",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2025-01-21T10:21:58.982Z",
+  "registeredBy": "arn:aws:iam::026090545212:root",
+  "enableFaultInjection": false,
+  "tags": []
+}
