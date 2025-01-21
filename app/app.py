@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %
 logger = logging.getLogger(__name__)
 
 rest_port = 5000
-eureka_client.init(eureka_server="http://44.202.110.204:8761/eureka", app_name="zenith-algorithm",
+eureka_client.init(eureka_server="http://eureka-service:8761/eureka", app_name="zenith-algorithm",
                    instance_port=rest_port)
 
 app = Flask(__name__)
