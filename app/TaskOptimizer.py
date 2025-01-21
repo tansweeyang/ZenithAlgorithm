@@ -2,6 +2,7 @@ import numpy as np
 from scipy.integrate import quad
 from scipy.optimize import minimize
 
+
 class TaskOptimizer:
     def __init__(self, task_names, task_efforts, task_enjoyabilities, total_available_time=8, max_duration=3, c1=0.5,
                  c2=-0.3,

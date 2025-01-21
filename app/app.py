@@ -1,7 +1,9 @@
 import logging
 from datetime import datetime, timedelta
-from flask import Flask, request, jsonify
+
 import py_eureka_client.eureka_client as eureka_client
+from flask import Flask, request, jsonify
+
 from TaskOptimizer import TaskOptimizer
 
 # Configure logging
@@ -9,9 +11,11 @@ logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %
 logger = logging.getLogger(__name__)
 
 rest_port = 5000
-eureka_client.init(eureka_server="http://44.202.110.204:8761/eureka", app_name="zenith-algorithm", instance_port=rest_port)
+eureka_client.init(eureka_server="http://44.202.110.204:8761/eureka", app_name="zenith-algorithm",
+                   instance_port=rest_port)
 
 app = Flask(__name__)
+
 
 @app.route('/tasks/generate_durations', methods=['POST'])
 def generate_schedule():
