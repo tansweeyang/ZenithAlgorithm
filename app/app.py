@@ -16,6 +16,7 @@ eureka_client.init(eureka_server="http://eureka-service:8761/eureka", app_name="
 
 app = Flask(__name__)
 
+
 @app.route('/tasks/generate_durations', methods=['POST'])
 def generate_schedule():
     tasks = request.get_json()
@@ -54,7 +55,8 @@ def generate_schedule():
         manual_end_time = datetime.strptime(manual_task['endTime'], "%H:%M")
 
         # Fill available gaps before the manual task with auto tasks
-        while auto_index < len(auto_tasks) and day_start_time + timedelta(hours=auto_task_durations[auto_index]) <= manual_start_time:
+        while auto_index < len(auto_tasks) and day_start_time + timedelta(
+                hours=auto_task_durations[auto_index]) <= manual_start_time:
             task_duration = auto_task_durations[auto_index]
             task_end_time = day_start_time + timedelta(hours=task_duration)
 
@@ -78,6 +80,7 @@ def generate_schedule():
     logger.info(f"Scheduled tasks: {scheduled_tasks}")
     return jsonify({"tasks": scheduled_tasks})
 
+
 def create_scheduled_task(task, start_time, end_time):
     """Helper function to format scheduled task"""
     return {
@@ -94,6 +97,7 @@ def create_scheduled_task(task, start_time, end_time):
         "colorCode": task.get("colorCode"),
         "archived": task.get("archived")
     }
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=rest_port, debug=True)
