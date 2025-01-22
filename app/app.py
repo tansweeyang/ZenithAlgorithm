@@ -82,7 +82,7 @@ def generate_schedule():
 
 
 def create_scheduled_task(task, start_time, end_time):
-    """Helper function to format scheduled task"""
+    # Helper function to format scheduled task
     return {
         "id": task.get("id"),
         "title": task.get("title"),
