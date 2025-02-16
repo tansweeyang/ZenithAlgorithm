@@ -12,7 +12,10 @@ logger = logging.getLogger(__name__)
 
 rest_port = 5000
 eureka_client.init(eureka_server="http://eureka-service:8761/eureka", app_name="zenith-algorithm",
-                   instance_port=rest_port)
+                   instance_port=rest_port,
+                   renewal_interval_in_secs=5,  # Sends heartbeat every 5 sec
+                   registry_fetch_interval_in_secs=10  # Fetches registry updates every 10 sec
+                   )
 
 app = Flask(__name__)
 
